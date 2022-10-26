@@ -83,6 +83,47 @@ function App() {
         </h1>
       </header>
       <main>
+        {(!VitoApi.CLIENT_ID || !VitoApi.CLIENT_SECRET) && (
+          <div className="env">
+            <h5>환경변수 설정</h5>
+            <p>
+              <a
+                href={"https://developers.vito.ai/console/"}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  color: "white",
+                }}
+              >
+                개발자 콘솔
+              </a>
+              에서 Client Id와 Clinet Secret을 가져와 넣어주세요.
+            </p>
+            <div className="key">
+              <label htmlFor="clientId">CLIENT_ID : </label>
+              <input
+                type="email"
+                id="clientId"
+                placeholder="abcdefg"
+                onChange={(e) => {
+                  VitoApi.CLIENT_ID = e.target.value;
+                }}
+              />
+            </div>
+            <div className="key">
+              <label htmlFor="clientId">CLIENT_SECRET : </label>
+              <input
+                type="email"
+                id="clientId"
+                placeholder="abcdefg"
+                onChange={(e) => {
+                  VitoApi.CLIENT_SECRET = e.target.value;
+                }}
+              />
+            </div>
+          </div>
+        )}
+
         <input
           id="upload-btn"
           type="file"
@@ -96,6 +137,15 @@ function App() {
           <button
             disabled={status === "progressing"}
             onClick={() => {
+              if (!VitoApi.CLIENT_ID) {
+                alert("CLIENT_ID를 입력하거나 .env 파일을 생성해주세요.");
+                return;
+              }
+              if (!VitoApi.CLIENT_SECRET) {
+                alert("CLIENT_SECRET를 입력하거나 .env 파일을 생성해주세요.");
+                return;
+              }
+
               const uploadBtn = document.getElementById("upload-btn");
               if (uploadBtn) {
                 uploadBtn.click();

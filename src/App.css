@@ -10,6 +10,10 @@ h1 {
   margin: 0;
 }
 
+h5 {
+  margin: 0;
+}
+
 main{
   margin: 0;
   padding-bottom: 100px;
@@ -20,6 +24,16 @@ main > section {
   text-align: left;
   font-size: 1rem;
   text-transform: uppercase;
+}
+
+.env > p {
+  margin: 10px;
+  font-size: 0.8rem;
+}
+
+.env > .key {
+  margin: 10px;
+  font-size: 0.8rem;
 }
 
 .upload > button {
